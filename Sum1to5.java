@@ -7,13 +7,13 @@ public class Sum1to5 {
 
 	static void sum() {
 		int sum =0;
-		for(int a = 1; a <= 10; a++) {
+		for(int a = 1; a <= 100; a++) {
 			
 			System.out.println(a);
 			
 			sum += a;
 		}
-		System.out.println(String.format("d%", sum));
+		System.out.println(String.format("%d", sum));
 		
 }
 }

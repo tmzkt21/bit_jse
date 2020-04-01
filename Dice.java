@@ -14,9 +14,9 @@ public class Dice {
 		System.out.println("기대하는 값 홀/짝 을 입력해 주세요");
 		Scanner scanner = new Scanner(System.in);
 		String expect = scanner.next();
-		System.out.println(String.format("사용자가 입력한 값: $s", expect));
+		System.out.println(String.format("사용자가 입력한 값: $d", expect));
 		Random random = new Random();
-		int dice = random.nextInt(4);
+		int dice = random.nextInt(6)+1;
 		System.out.println(String.format("컴퓨터가 생성한 값: %d" , dice));
 		String result ="";
 		switch(dice ) {
