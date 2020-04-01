@@ -11,7 +11,6 @@ public class GenderChecker {
 		System.out.println("주민번호를 입력하세요");
 		Scanner scanner = new Scanner(System.in);
 		String ssn = scanner.next();
-		System.out.println("ssn");
 		char ch = ssn.charAt(7);
 		//String a = "";
 		//char c = '';
