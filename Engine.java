@@ -1,123 +1,94 @@
 package com.jse.app;
-
 import java.util.Random;
 import java.util.Scanner;
+//import com.jse.app.Member;//package com.jse.app; 있는
+//public class Member.java 파일을 가져(읽어온것)
+
 
 public class Engine {
 	public static void main(String[] args) {
-
+		
 		Scanner scanner = new Scanner(System.in);
-		while (true) {
-			System.out.println("0. 종료 "
-					+ "1.가위바위보 "
-					+ "2.주사위 홀짝 맞추기 게임"
-					+ "3. 1부터 100까지의 합");
-					
-			
+		Member member = new Member();
+		Calculator calculator =new Calculator();
+		Dice dice = new Dice();
+		RPSGame rpsGame =new RPSGame();
+		Random random = new Random();
+		while(true) {
+		
+			System.out.println("0. 종료 " 
+							+ "1.회원가입 " 
+							+ "2.로그인 " 
+							+ "3.계산기 " 
+							+ "4.가위바위보 게임" 
+							+ "5. 주사위 홀짝 맞추기게임" 
+							+ "6. 1부터 100까지의 합");
 			int flag = scanner.nextInt();
-			switch (flag) {
-			case 0:
-				System.out.println("종료");
-				return;// returnmain 메소드를 끝냄 종료가된다
-			case 1:
-				
-				game();
-				break;
-			case 2:
-				switchDice();
-				break;
-			case 3:
-				sum();
-				break;
+			switch(flag) {
+			case 0 : System.out.println("종료"); return;
+			case 1 : System.out.println("회원가입");
+					 System.out.println("아이디 입력");
+					 String userid = scanner.next();
+					 member.setId(userid);
+					 
+					 
+			 break;
+			 case 2:
+				 System.out.println("로그인");
+				 System.out.println("아이디 입력");
+				 String id2 = scanner.next();
+				 String returnId =member.getId();
+				 System.out.println("로그인된 아이디:"+returnId);
+				 if (id2.equals(returnId)) {
+					 System.out.println("로그인 성공");
+				 }else {
+					 System.out.println("로그인 실패");
+				 }
+				 break;
+			 case 3:
+				 System.out.println("계산기");
+				 System.out.println("첫번쨰 수 입력");
+				 int a =scanner.nextInt();
+				 calculator.setNum1(a);
+				 System.out.println("두번쨰 수 입력");
+				 int b =scanner.nextInt();
+				 calculator.setNum2(b);
+				 int c =calculator.calaculate();
+				 System.out.println("두수의 합"+ c);
+				 break;
+			 case 4:
+				 System.out.println("**가위바위보 게임**");
+				 System.out.println("가위1, 바위2, 보3 을 입력하세요");
+				 int user = scanner.nextInt();
+				 System.out.println("사용자가 입력한 값:" +user);
+				 rpsGame.setUserValue(user);
+				 
+				 int com = random.nextInt(3)+1;
+				 System.out.println("컴퓨터가 입력한 값" + com);
+				 rpsGame.setComputerValue(com);
+				 String gameResult = rpsGame.game();
+				 System.out.println(gameResult);
+				 break;
+			 case 5:
+				 System.out.println("주사위 홀짝 맞추기 게임");
+				 System.out.println("기대하는 값 홀/짝 을 입력해 주세요");
+				 String expect =scanner.next();
+				 System.out.println(String.format("사용자가 입력한 값: %s", expect));
+				 dice.setExpect(expect);
+				 int diceNumber = random.nextInt(4);
+				 System.out.println(String.format("컴퓨터가 생성한 값: %d",diceNumber));
+				 dice.setDiceNumber(diceNumber);
+				 String result =dice.switchDice();
+				 System.out.println(result);
+				 break;
 			}
-		}
-	}
-	static void game() {
-		System.out.println("가위1,바위2,보3, 을 입력하세요");
-		Scanner scanner = new Scanner(System.in);
-		int sum = scanner.nextInt();
-		System.out.println("사용자의 값은 " + sum + " 입니다.");
-		Random random = new Random();
-		int zum = random.nextInt(3) + 1;
-		System.out.println("컴퓨터의 값은 " + zum + " 입니다.");
 
-		String result = "";
-
-		if (sum == zum) {
-			result = "무승부";
-			System.out.println(result);
-		}
-		if (sum == 1) {
-			if (zum == 2) {
-				result = "컴퓨터 승리";
-				System.out.println(result);
-			} else if (zum == 3) {
-				result = "사용자 승리";
-				System.out.println(result);
-			}
-
-		} else if (sum == 2) {
-			if (zum == 1) {
-				result = "사용자 승리";
-				System.out.println(result);
-
-			} else if (zum == 3) {
-				result = "컴퓨터 승리";
-				System.out.println(result);
-			}
-
-		} else if (sum == 3) {
-			result = "컴퓨터 승리";
-			System.out.println(result);
-
-			if (zum == 2) {
-				result = "사용자 승리";
-				System.out.println(result);
-			}
-			else if (zum == 1) {
-				result = "컴퓨터 승리";
-				System.out.println(result);
-
-			}
-		}
-		
-	}
-	
-
-	static void switchDice() {
-		System.out.println("주사위 홀짝 맞추기 게임");
-		System.out.println("기대하는 값 홀/짝 을 입력해 주세요");
-		Scanner scanner = new Scanner(System.in);
-		String expect = scanner.next();
-		System.out.println(String.format("사용자가 생성한 값: %s",expect));
-		Random random = new Random();
-		int dice = random.nextInt(6)+1;
-		System.out.println(String.format("컴퓨터가 생성한 값: %d", dice));
-		String result = "";
-		switch (dice) {
-		case 1:case 3:case 5:result = "홀";break;
-		case 2:case 4:case 6:result = "짝";break;
-		}
-		System.out.println("컴퓨터의 결과: 짝");
-		String result2 = "틀림";
-		if (expect.equals(result)) {
-			result2 = "맞음";
-		}
-		System.out.println(String.format("결과: %s", result2));
-	}
-	
-	static void sum() {
-		int sum =0;
-		for(int a = 1; a <= 100; a++) {
 			
-			System.out.println(a);
-			
-			sum += a;
-		}
-		System.out.println(String.format("%d", sum));
-		
-}
+	}
 
+		
+
+	}
 }
 
 //while(true) 무한loop

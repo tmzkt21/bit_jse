@@ -8,8 +8,8 @@ public class GenderChecker {
 	}
 
 	static void find() {
-		System.out.println("주민번호를 입력하세요");
-		Scanner scanner = new Scanner(System.in);
+		System.out.println("주민번호를 입력하세요");//out.println 클래스 메서드
+		Scanner scanner = new Scanner(System.in);//(System.in)클래스변수
 		String ssn = scanner.next();
 		char ch = ssn.charAt(7);
 		//String a = "";
