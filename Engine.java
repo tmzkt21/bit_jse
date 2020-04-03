@@ -9,11 +9,13 @@ public class Engine {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
-		Member member = new Member();
-		Calculator calculator =new Calculator();
-		Dice dice = new Dice();
-		RPSGame rpsGame =new RPSGame();
 		Random random = new Random();
+		RPSGame rpsGame = null;
+		Dice dice = null;
+		Calculator calculator = null;
+		Member member = null;
+//		Kaup kaup = new Kaup();
+		Kaup kaup = null;
 		while(true) {
 		
 			System.out.println("0. 종료 " 
@@ -22,7 +24,8 @@ public class Engine {
 							+ "3.계산기 " 
 							+ "4.가위바위보 게임" 
 							+ "5. 주사위 홀짝 맞추기게임" 
-							+ "6. 1부터 100까지의 합");
+							+ "6. 1부터 100까지의 합"
+							+ "7. 몸상태 체크 ");
 			int flag = scanner.nextInt();
 			switch(flag) {
 			case 0 : System.out.println("종료"); return;
@@ -72,15 +75,43 @@ public class Engine {
 			 case 5:
 				 System.out.println("주사위 홀짝 맞추기 게임");
 				 System.out.println("기대하는 값 홀/짝 을 입력해 주세요");
-				 String expect =scanner.next();
-				 System.out.println(String.format("사용자가 입력한 값: %s", expect));
+				 int expect = scanner.nextInt();
+				 System.out.println(String.format("사용자가 입력한값 : %s", expect));
 				 dice.setExpect(expect);
-				 int diceNumber = random.nextInt(4);
+				 int diceNumber = random.nextInt();
 				 System.out.println(String.format("컴퓨터가 생성한 값: %d",diceNumber));
-				 dice.setDiceNumber(diceNumber);
-				 String result =dice.switchDice();
+				 
+				 dice.setdiceNumber(diceNumber);
+				 String result =dice.switchdice();
 				 System.out.println(result);
+				 
+				 
+			
+				
 				 break;
+			 case 6:
+				 break;
+			 case 7:
+				 kaup = new Kaup();//kaup kaup = null; 일경우 즉 한번만 쓸때 적어야함
+				 System.out.println("키 얼마에요?");
+				 double height =scanner.nextDouble();
+				 System.out.println(String.format("당신의 키:%s", height));
+				
+				 //
+				 kaup.setHeight(height);
+				 
+				 System.out.println("당신의 몸무게:"+scanner.nextDouble());
+				 
+				 //
+				 kaup.setWeight(weight);
+				 double result1 = height/weight;
+				 System.out.println("당신의 몸은"+ result1);
+				
+				 String result2 = kaup.doublekaup();
+				 System.out.println(result2);
+				 
+				 
+				 
 			}
 
 			
